@@ -15,6 +15,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.util.Constants;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -31,7 +32,7 @@ public class NetworkManager extends WorldSavedData {
     }
 
     public static NetworkManager get(ServerWorld world) {
-        String name = NAME + "_" + world.getDimension().getType().getRegistryName().getNamespace() + "_" + world.getDimension().getType().getRegistryName().getPath();
+        String name = NAME + "_" + world.getDimensionType().toString();
 
         return world.getSavedData().getOrCreate(() -> new NetworkManager(name, world), name);
     }

@@ -38,7 +38,7 @@ public class RefinedPipesNetwork {
             pos.getY(),
             pos.getZ(),
             radius,
-            world.getDimension().getType()
+            world.getDimensionKey()
         )), message);
     }
 

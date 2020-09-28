@@ -19,11 +19,15 @@ repositories {
     flatDir { dirs 'deps' }
 }
 
+repositories {
+    maven { url 'https://modmaven.k-4u.nl/' }
+}
+
 apply plugin: 'net.minecraftforge.gradle'
 apply plugin: 'eclipse'
 apply plugin: 'maven-publish'
 
-version = '0.4.3'
+version = '1.16.3-1.0.0'
 def env = System.getenv()
 if (env.BUILD_NUMBER) {
     version = version + "+" + "${env.BUILD_NUMBER}"
@@ -36,7 +40,7 @@ sourceCompatibility = targetCompatibility = compileJava.sourceCompatibility = co
 compileJava.options.encoding = 'UTF-8'
 
 minecraft {
-    mappings channel: 'snapshot', version: '20200225-1.15.1'
+    mappings channel: 'snapshot', version: '20200916-1.16.2'
 
     runs {
         client {
@@ -96,13 +100,7 @@ processResources {
 }
 
 dependencies {
-    minecraft 'net.minecraftforge:forge:1.15.2-31.1.39'
-
-    runtimeOnly fg.deobf("mezz.jei:jei-1.15.2:6.0.0.2")
-    runtimeOnly fg.deobf("not_used:Mekanism-1.15.2:9.9.17.409")
-    runtimeOnly fg.deobf("com.github.mcjty:mcjtylib:1.15-4.0.3-alpha")
-    runtimeOnly fg.deobf("com.github.mcjty:rftoolsbase:1.15-1.0.1-alpha")
-    runtimeOnly fg.deobf("com.github.mcjty:rftoolspower:1.15-2.0.1-alpha")
+    minecraft 'net.minecraftforge:forge:1.16.3-34.1.0'
 }
 
 jar {
@@ -148,12 +146,10 @@ publishing {
             artifact deobfJar
         }
     }
-}
-
-publishing {
     repositories {
         maven {
-            url "/var/www/repo"
+            url "file:///${project.projectDir}/mcmodsrepo"
         }
     }
 }
+

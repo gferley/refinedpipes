@@ -6,9 +6,9 @@ import com.refinedmods.refinedpipes.block.PipeBlock;
 import com.refinedmods.refinedpipes.tile.PipeTileEntity;
 
 import net.minecraft.block.BlockState;
-import net.minecraft.client.renderer.Quaternion;
-import net.minecraft.client.renderer.TransformationMatrix;
-import net.minecraft.client.renderer.Vector3f;
+import net.minecraft.util.math.vector.Quaternion;
+import net.minecraft.util.math.vector.TransformationMatrix;
+import net.minecraft.util.math.vector.Vector3f;
 import net.minecraft.client.renderer.model.BakedQuad;
 import net.minecraft.client.renderer.model.IBakedModel;
 import net.minecraft.client.renderer.model.ItemOverrideList;
@@ -174,7 +174,7 @@ public class PipeBakedModel implements IBakedModel {
         }
 
         for (BakedQuad quad : model.getQuads(state.getState(), side, state.getRand(), EmptyModelData.INSTANCE)) {
-            BakedQuadBuilder builder = new BakedQuadBuilder(quad.func_187508_a());
+            BakedQuadBuilder builder = new BakedQuadBuilder(quad.getSprite());
             TRSRTransformer transformer = new TRSRTransformer(builder, transformation);
 
             quad.pipe(transformer);
@@ -196,7 +196,7 @@ public class PipeBakedModel implements IBakedModel {
     }
 
     @Override
-    public boolean func_230044_c_() {
+    public boolean isSideLit() {
         return true;
     }
 
